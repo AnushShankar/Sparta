@@ -1,12 +1,9 @@
 package multiThreading;
 
-public class Count implements Runnable{
+public class Count extends Thread{
 	
-	Thread myThread;
-	
-	Count(){
-		myThread = new Thread(this,"my runnable thread");
-		myThread.start();
+	public Count(){
+		start();
 	}
 	
 	public void run(){
@@ -27,4 +24,27 @@ public class Count implements Runnable{
 			System.out.println("myThread has run over");
 	}
 
+}
+
+
+class ExtendingExample
+{
+	public static void main(string args[])
+	{
+		Count cnt = new Count();
+		
+		try
+		{
+			while(cnt.isAlive())
+			{
+				System.out.println("Main Thread");
+				Thread.sleep(1000);
+			}
+		}
+		
+		catch(InterruptedException e)
+		{
+			System.out.println("Main thread is interrupted");
+		}
+	}
 }
